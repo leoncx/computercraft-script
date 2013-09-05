@@ -1,4 +1,5 @@
-os.loadAPI("APIs/daemon")
+if not daemon then os.loadAPI("apis/daemon") end
+if not daemon.isInstalled() then daemon.install() end
 
 modemPos = "top"
 glassPos = "left"
