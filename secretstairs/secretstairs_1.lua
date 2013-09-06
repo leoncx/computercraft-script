@@ -2,9 +2,10 @@ stairsState = 0
 wifiCommandId = 42
 wifiEngineId = 43
 wifiPos = "left"
+enginePos = "right"
 redstonePos = "bottom"
 
-wifi= peripheral.wrap(wifiEnginePos)
+wifi= peripheral.wrap(wifiPos)
 wifi.open(wifiCommandId)
 
 function open()
@@ -14,7 +15,7 @@ function open()
   local engine = peripheral.wrap(enginePos)
   engine.move(0, false, true)
   wifi.transmit(wifiEngineId, wifiEngineId, "open")
-  sleep(1)
+  sleep(2)
   redstone.setOutput(redstonePos, true)
   stairsState = 1
 end
@@ -35,7 +36,7 @@ function close()
 end
 
 while true do
-  computerId, message, dist = os.pullEvent("rednet_message")
+  local event, side, freqId, freqReplyId, message, dist = os.pullEvent("modem_message")
   if message == "open" then
     open()
   elseif message == "close" then

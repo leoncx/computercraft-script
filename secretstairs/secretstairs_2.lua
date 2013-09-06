@@ -9,7 +9,7 @@ wifi = peripheral.wrap(wifiPos)
 wifi.open(wifiId)
 
 function open()
-  if stairsState == 0 then
+  if stairsState == 1 then
     return
   end
   while false == peripheral.isPresent(enginePos) do
@@ -21,7 +21,7 @@ function open()
 end
 
 function close()
-  if stairsState == 1 then
+  if stairsState == 0 then
     return
   end
   local engine = peripheral.wrap(enginePos)
@@ -30,7 +30,7 @@ function close()
 end
 
 while true do
-  local side, freqId, fredReplyId, message, dist = os.pullEvent("modem_message")
+  local event, side, freqId, freqReplyId, message, dist = os.pullEvent("modem_message")
   if message == "open" then
     open()
   elseif message == "close" then
