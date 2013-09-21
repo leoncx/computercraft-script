@@ -4,6 +4,7 @@ if not daemon.isInstalled() then daemon.install() end
 modemPos = "top"
 glassPos = "left"
 secretWifiId = 42
+obsibianWifiId = 44
 username = "leoncx"
 startXpos = 2
 startYpox = 10
@@ -23,6 +24,8 @@ function commands()
       secret("open")
     elseif (e == "chat_command" and b == username and a == "secretclose") then
       secret("close")
+    elseif (e == "chat_command" and b == username and a == "obsibian") then
+      wifi.transmit(obsibianWifiId, obsibianWifiId, "obsibian")
     end
   end
 end
