@@ -8,7 +8,7 @@ wifi.open(wifiCommandId)
 status = redstone.getOutput(redstonePos)
 
 function switch()
-  status = !status
+  status = not status
   redstone.setOutput(redstonePos, status)
 end
 
